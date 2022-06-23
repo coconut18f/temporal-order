@@ -41,18 +41,17 @@
             top:30%;
             left:10%;
             z-index:9999;
+            /*margin:0;*/
         }
     </style>
  <!--For the full list of available Crowd HTML Elements and their input/output documentation,-->
  <!--     please refer to https://docs.aws.amazon.com/sagemaker/latest/dg/sms-ui-template-reference.html -->-->
 
  <!--You must include crowd-form so that your task submits answers to MTurk -->
-
  
+
 <crowd-form answer-format="flatten-objects">
- 
-  Welcome! You can see the insturctions and detailed examples for our task by clicking on the button besides.
-
+   Welcome! You can see the insturctions and detailed examples for our task by clicking on the button besides.
   <crowd-instructions link-text="View instructions" link-type="button">
     <short-summary>
       <p>In this task, you are given a paragraph and a pair of two events which are included and annotated in the paragraph. You will be asked to decide which of the two events happens first and complete an explanation to illustrate how you make the decision.</p>
@@ -80,7 +79,7 @@
 <p>Use "<span style="background-color: red">likely</span>" to represent that you think your annotated relation is more than 50% certain to be true.</p>
 
 <p><b>Step 2: select all relevant explanation classes</b></p>
-<p>You are now asked to choose all relevant explanation classes that help you (or you use) to decide the temporal order relation of the event pair and write down simple phrases to further explain the class content <b>in a reasoning logic order</b>.</p>
+<p>You can refer to the insturctions for detailed example explanation. You are now asked to choose all relevant explanation classes that help you (or you use) to decide the temporal order relation of the event pair and write down simple phrases to further explain the class content <b>in a reasoning logic order</b>.</p>
 
 <!--<p>You should first take into consideration two major explanation directions: explicit clues in content and commonsense. Explicit clues in content refer to the clues that can be extracted directly from the paragraph like timestamp and grammar. While commonsense requires to be inferred from the paragraph like prerequisites.</p>   -->
 
@@ -103,7 +102,7 @@
     
     
      <positive-example>
-<!--       <p><b>Example1</b></p>
+      <p><b>Example1</b></p>
       <p><b>Passage:</b>Speaking to the BBC in 1995, Mr Lowe said of his Antarctic adventure: "We estimated we could do it in 100 days, and we got across on the 99th day". "We were <b>pleased</b> that England and New Zealand knew about it, and we thought that's where it would stop." He also talked about his "second job" as the group's cameraman, and having to <b>wear</b> four pairs of gloves to work the clockwork camera.</p>
       <p><b>Event pair:</b> "pleased" and "wear"</p>
       <p><b>Temporal order relation:</b> after</p>
@@ -111,8 +110,8 @@
       <p><b>Explaination:</b></p>
       <p>1:Mr Lowe was pleased after they got across on the 99th day.</p>
       <p>5:The event that he wears four pairs of gloves happens before the end of the adventure.</p>
-      <br />  -->
-      <p><b>Example1</b></p>
+      <br /> 
+      <p><b>Example2</b></p>
       <p><b>Passage:</b> I went to sleep, woke up in the morning, went down stairs and met Ben there. He was holding a coffee, which he just purchased at a nearby shop.</p>
       <p><b>Event pair:</b> "went to sleep" and "purchased a coffee"</p>
       <p><b>Temporal order relation:</b> before</p>
@@ -123,7 +122,7 @@
       <p>5:Normally someone purchasing a coffee happened and ended before he was holding a coffee. So Ben purchased a coffee before I met Ben.</p>
       <p>6:Hour for duration of “ sleep”, minute for duration of “Ben purchased a coffee”.</p>
       <br /> 
-      <p><b>Example2</b></p>
+      <p><b>Example3</b></p>
       <p><b>Passage:</b>People lay their hands on Deazjah Roseboro, 12, as she comforts her cousin, Jerney Moss, 8, following a mass shooting at a Tops Friendly Market in Buffalo, NY, on Sunday, May 15. </p>
       <p><b>Event pair:</b>"lay their hands" and "comforts"</p>
       <p><b>Temporal order relation:</b> equal</p>
@@ -138,10 +137,10 @@
     <!--  <p>Explain why it's a bad answer</p>-->
     <!--</negative-example> -->-->
   </crowd-instructions>
-
-<br>
+  
+<br>  
 -->
- 
+
 <p> Read the passage and decide which of the two events descirbed in the passage happens first and give an explanation of your choice:</p>
 
     <!-- Your contexts and intents will be substituted for the "context" and "intent" variables when you 
@@ -178,17 +177,18 @@
 
 <div>
 <p>3. Explain your choice of temporal order relation: <b>choose from explanation classes</b> and <b>write a sentence or two</b> to explain in detail for the class you choose.</p>
-<p>You should write down an explanation including <b>only a class and a major event  in a line</b>. You can choose a class multiple times to describe multiple events.</p>
+<p>You should write down an explanation including <b>only a class in a line</b> and <b>strictly follow the explanation line format</b>. You can choose a class multiple times to describe multiple events.</p>
 <p>The explanation sentences should be <b>logically connected</b> and all sentences together are a <b>complete and reasonable</b> explanation.</p>
 <p>If you think the relation is <b>vague</b>, you should write down all the explanations you may find. If there is nothing, you can write down <b> None</b>. </p>
-<p>If the event mentioned in your explanation is from the event pair, you should use the <b>exact same language</b> to describe the event.</p>
-<p>For each line, <b>the format is</b>: Number for the class you choose(1-6): explanation sentence. (addiational sentence: <b>So</b> <b>Event in the pair</b> (happen) before/after/at the same time as <b>Event in the previous explanation sentence</b>). You may <b>further add a sentence</b> to compare event with the events in the event pair, which will assist in explanation.</p>
+<p>Event mentioned in the explanation is not limited to the events in the event pair. However, if the event mentioned in your explanation is from the event pair, you should use the <b>exact same language</b> to describe the event. </p>
 
 <br>
 <!--<div style="display: flex;">-->
     
-<p>You can choose from the following classes and click on the class name to see a detailed definition:</p>
- <p>You can refer to the <b>insturctions</b> at the beginning for detailed example explanation. The content in brackets like (the event of) is optional and can be used to complete a sentence.</p>
+<p><b>You should first click on the class name to see a detailed definition for each class</b> and then choose from the following classes:</p>
+<p><b>You can refer to the insturctions at the begining for detailed example explanation.</b> The content in brackets like (the event of) is optional and can be used to complete a sentence.</p>
+<p>For each line, <b>the format is</b>: Number for the class you choose(1-6): an explanation sentence following Explanation line format + (additional sentence: So <b>Event in the pair</b> (happen) before/after/at the same time as <b>Event in the previous explanation sentence</b>). You may <b>further add a sentence</b> to compare event with the events in the event pair, when it will assist in explanation.</p>
+
 <p><div class="pro"><div>1.Timestamp</div>
             <div class="pro1">
                 <div> An explicit or easy-to-infer time annotation for an event in the paragraph. For example, "I <b>ate</b> snacks at 9pm". "at 9pm" is the explicit timestamp for event "ate snacks". While for Mr Lowe said of his Antarctic adventure: "We estimated we could do it in 100 days, and we got across on the 99th day". "We were <b>pleased</b> that England and New Zealand knew about it, and we thought that's where it would stop."  "on the 99th day" is the easy-to-infer timestamp for event "pleased".</p>
@@ -245,14 +245,43 @@
             </div>
         </div> Explanation line format: <b>6:</b> <b>Feature</b> for duration / frequency / typical time of <b>Event</b>.  </p>
         
-<!--<p>  -- 6. <b>Temporal property</b>. Explanation line format: <b>6:</b> <b>Feature</b> for duration / frequency / typical time of <b>Event</b>. </p>-->
+<!--<p>  -- 6. <b>Temporal property</b>. Format: <b>6:</b> <b>Feature</b> for duration / frequency / typical time of <b>Event</b>. </p>-->
 <crowd-text-area name="essay" rows="7" placeholder="Please enter your explanation here..." required></crowd-text-area>
 </div> -->
-<br>
-<br>
-<br>
-<br>
 
+<!--<P>3. Which of these names would have information on your team's activities?<BR>-->
+<!--<input type="radio" name="Which of these names would have information on your team's activities?" value="Volunteer Communities">Volunteer Communities<BR>-->
+<!--<input type="radio" name="Which of these names would have information on your team's activities?" value="Communities">Communities<BR>-->
+<!--<input type="radio" name="Which of these names would have information on your team's activities?" value="Volunteer Groups">Volunteer Groups<BR>-->
+<!--<input type="radio" name="Which of these names would have information on your team's activities?" value="Groups">Groups<BR>-->
+<!--</p>-->
+
+
+<!--  <div>-->
+<!--    <p>On a scale of 1-10, how much do you like the name 'Volunteer Communities'?</p>-->
+<!--    <crowd-slider name="howMuchvolunteercommunities" min="1" max="10" step="1" pin="true" required></crowd-slider>-->
+<!--  </div>-->
+  
+<!--  <div>-->
+<!--    <p>On a scale of 1-10, how much do you like the name 'Communities'?</p>-->
+<!--    <crowd-slider name="howMuchcommunities" min="1" max="10" step="1" pin="true" required></crowd-slider>-->
+<!--  </div>-->
+  
+<!--  <div>-->
+<!--    <p>On a scale of 1-10, how much do you like the name 'Volunteer Groups'?</p>-->
+<!--    <crowd-slider name="howMuchvolunteergroups" min="1" max="10" step="1" pin="true" required></crowd-slider>-->
+<!--  </div>-->
+  
+<!--  <div>-->
+<!--    <p>On a scale of 1-10, how much do you like the name 'Groups'?</p>-->
+<!--    <crowd-slider name="howMuchgroups" min="1" max="10" step="1" pin="true" required></crowd-slider>-->
+<!--  </div>-->
+<br>
+<br>
+<br>
+<br>
+<!--</form>-->
+<!--</body>-->
 
 </div>
     <script>
@@ -274,5 +303,88 @@
  
 </html>
 
+
+<!--<!DOCTYPE html>-->
+<!--<html lang="en">-->
+ 
+<!--<head>-->
+<!--    <meta charset="UTF-8">-->
+<!--    <meta http-equiv="X-UA-Compatible" content="IE=edge">-->
+<!--    <meta name="viewport" content="width=device-width, initial-scale=1.0">-->
+<!--    <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>-->
+ 
+ 
+<!--    <title>Document</title>-->
+<!--</head>-->
+ 
+<!--<body>-->
+<!--    <style>-->
+<!--        .pro {-->
+<!--            width: 100px;-->
+<!--            height: 40px;-->
+<!--            background-color: pink;-->
+<!--            text-align: center;-->
+<!--            line-height: 40px;-->
+<!--            border-radius: 50px;-->
+<!--            border: 1px solid palevioletred;-->
+<!--        }-->
+ 
+<!--        .pro1 {-->
+<!--             width: 100px;-->
+<!--            height: 40px; -->
+<!--            background-color: yellow;-->
+<!--            text-align: center;-->
+<!--            line-height: 40px;-->
+<!--            border-radius: 50px;-->
+<!--            border: 1px solid palevioletred;-->
+<!--            display: none;-->
+             <!--/*先设置隐藏 */-->
+<!--            width: 300px;-->
+<!--        }-->
+<!--    </style>-->
+<!--    <div style="display: flex;">-->
+<!--        <div class="pro">-->
+<!--            <div>Section 1</div>-->
+<!--            <div class="pro1">-->
+<!--                <div>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce semper, magna a ultricies volutpat,-->
+<!--                    mi eros viverra massa, vitae consequat nisi justo in tortor. Proin accumsan felis ac felis dapibus,-->
+<!--                    non iaculis mi varius.</div>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--        <div class="pro">-->
+<!--            <div>Section 2</div>-->
+<!--            <div class="pro1">-->
+<!--                <div>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce semper, magna a ultricies volutpat,-->
+<!--                    mi eros viverra massa, vitae consequat nisi justo in tortor. Proin accumsan felis ac felis dapibus,-->
+<!--                    non iaculis mi varius.</div>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--        <div class="pro">-->
+<!--            <dqiv>Section 3</dqiv>-->
+<!--            <div class="pro1">-->
+<!--                <div>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce semper, magna a ultricies volutpat,-->
+<!--                    mi eros viverra massa, vitae consequat nisi justo in tortor. Proin accumsan felis ac felis dapibus,-->
+<!--                    non iaculis mi varius.</div>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </div>-->
+<!--    <script>-->
+<!--        $(function () {-->
+            <!--// .click点击弹出-->
+<!--            $(".pro").mousemove(function () {-->
+                <!--// this相当于指针，会根据鼠标自动跳-->
+<!--                $(".pro1", this).css("display", "block")-->
+<!--            })-->
+ 
+<!--            $(".pro").mouseleave(function () {-->
+<!--                $(".pro1", this).css("display", "none")-->
+ 
+<!--            })-->
+<!--        })-->
+<!--    </script>-->
+ 
+<!--</body>-->
+ 
+<!--</html>-->
 
 </crowd-form>
